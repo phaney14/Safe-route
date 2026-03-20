@@ -4,41 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafeRoute Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-        body { font-family: Arial, sans-serif; }
-        #map { height: 500px; width: 100%; }
-        #sidebar { padding: 20px; }
+        body {
+            background-color: #333;
+            color: #fff;
+        }
+        #map {
+            height: 400px;
+        }
     </style>
 </head>
 <body>
-    <div id="sidebar">
-        <h2>SafeRoute</h2>
-        <p>Welcome to the SafeRoute application. Use the features below to plan your route and avoid left turns.</p>
-        <button id="plan-route">Plan Route</button>
-        <div id="route-planner"></div>
-        <div id="turn-analysis"></div>
-    </div>
+    <h1>Welcome to SafeRoute</h1>
     <div id="map"></div>
+    <input type="text" id="location-input" placeholder="Start typing a location..." />
+    <button id="find-route">Find Route</button>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        // Initialize Map
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: -34.397, lng: 150.644},
-                zoom: 8
-            });
-        }
+        var map = L.map('map').setView([51.505, -0.09], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19
+        }).addTo(map);
 
-        // Function to plan route
-        document.getElementById('plan-route').addEventListener('click', function() {
-            // Logic for route planning avoiding left turns
-            alert('Planning route avoiding left turns!');
+        document.getElementById('find-route').onclick = function() {
+            // Implement geolocation and route planning logic here
+            alert('Finding route...');
+        };
+
+        document.getElementById('location-input').addEventListener('input', function() {
+            // Implement autocomplete functionality here
         });
-
-        // Load Google Maps API
-        var script = document.createElement('script');
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap';
-        script.async = true;
-        document.head.appendChild(script);
     </script>
 </body>
 </html>
